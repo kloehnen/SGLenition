@@ -10,7 +10,7 @@ with the two tokens preceeding and following it, and the document name.
 ################################################################################
 import re,os
 path = ('/Users/pokea/Documents/Work/UofA/Current/'
-        'SG_Lenition/ARCOSG/')
+        'SG_Lenition/')
 tags = set(["Tdsfg","Ncsfg","Tdsmg","Ncsmg"])
 ################################################################################
 
@@ -57,10 +57,11 @@ class Lenition:
     def __init__(self, path):
         self.path = path
         self.lDocs = {}
-        for root, dirs, files in os.walk(path):
+        for root, dirs, files in os.walk(self.path+'ARCOSG/'):
             for f in files:
                 if f.endswith('.txt'):
-                    ftext = re.split(r'\n+',(open(path+f,'Ur').read()))
+                    fpath = path + 'ARCOSG/'+ f
+                    ftext = re.split(r'\n+',(open(fpath,'Ur').read()))
                     self.lDocs[f[:-4]] = ftext
 
     def get(self):
